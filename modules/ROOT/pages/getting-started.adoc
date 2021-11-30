@@ -11,7 +11,7 @@ This quickstart walks you through:
 
 You can view the walk-through in video format:
 
-video::myQT9kv7SnU[youtube,800,600]
+video::myQT9kv7SnU[youtube,800,450]
 
 == Download example solution and data
 . Download the https://github.com/TigerGraph-DevLabs/TigerGraphQL/raw/0.7/tigergraphql_example_solution.tar.gz[example TigerGraph solution].
