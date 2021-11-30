@@ -1,15 +1,18 @@
 = Schema
+:experimental:
 
 TigerGraph GraphQL Service translates TigerGraph’s GSQL schema into a GraphQL schema.
 Vertices and edges are translated to Object types in GraphQL, and outgoing and incoming reverse edges in GSQL schema are mapped to fields in the corresponding vertex type.
 Vertex types are included as fields in top-level type for the entire graph.
 
+Within the GraphQL client, you can click on the btn:[Schema] button on the right side of the screen to view the entire GraphQL schema.
+
 WARNING: Currently, TigerGraph GraphQL service cannot automatically react to schema changes happening in TigerGraph.
 When a schema change happens, you need to restart the service to keep the GraphQL schema in sync with TigerGraph schema.
 
 == Query
-Every GraphQL schema starts with a top level `Quer``y`` type.
-The `Query` type only has a field whose name and type name are the same as the GSQL graph name.
+Every GraphQL schema starts with a top level `Query` type.
+The `Query` type only has one field whose name and type name are the same as the GSQL graph name.
 
 If you have a graph in GSQL named `DemoGraph`, then in your GraphQL schema, there will be the following type `Query`:
 
@@ -55,12 +58,12 @@ type DemoGraph { <1>
 }
 ----
 <1> `DemoGraph` type contains fields for all vertices, in this case `person` and `city`, `school`, `company` and `skill`.
-<2> Each vertex field has the same link:https://graphql.org/learn/schema/#arguments[arguments] `where`, `whereExpr`, `order_by`, `limit`, and `offset`, which are used for xref:filtering.adoc[filtering], xref:sorting.adoc[sorting] and xref:pagination.adoc[pagination].
+<2> Each vertex field has the same link:https://graphql.org/learn/schema/#arguments[arguments]: `where`, `whereExpr`, `order_by`, `limit`, and `offset`, which are used for xref:filtering.adoc[filtering], xref:sorting.adoc[sorting] and xref:pagination.adoc[pagination].
 
 == Vertex types
 
 Each xref:gsql-ref:ddl-and-loading:defining-a-graph-schema.adoc#_create_vertex[vertex type] in GSQL will be translated into an link:https://graphql.org/learn/schema/[Object type] in GraphQL.
-Edges are mapped to fields on the corresponding vertex object.
+Edge types connected to the vertex type are mapped to fields on the corresponding vertex object.
 Therefore, the `city`  and `person` vertex types have the following GraphQL schema.
 
 [source,graphql]
@@ -73,6 +76,7 @@ type person {
   married: Boolean
   name: String
   born_in(where: born_inFilter, whereExpr: String): [born_in] <2>
+  ...
 }
 
 type city {
@@ -80,16 +84,18 @@ type city {
   name: String
   population: Int64
   taxRate: Float
+  ...
 }
 ----
 <1> Vertex type properties in GraphQL are translated to object type fields.
 <2> Edges are mapped to fields on the corresponding object.
 
 == Edge types
-Each edge types are translated differently depending on whether the edge is directed or undirected.
+Edge types are translated differently depending on whether the edge is directed or undirected.
 
 === Directed edges
-A directed edge type is translated into a single GraphQL Object type, with properties of the edge type mapped to fields of the edge type. In addition, the `TO` vertex connected to the edge is mapped to a field of the corresponding edge Object type.
+A directed edge type is translated into a single GraphQL Object type, with properties of the edge type mapped to fields of the edge Object type.
+In addition, the `TO` vertex connected to the edge is mapped to a field of the corresponding edge Object type.
 
 For example, if a `born_in` directed edge type pointing from the `person` vertex type and to the `city` vertex type will be translated into the following:
 

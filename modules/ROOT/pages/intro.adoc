@@ -1,11 +1,21 @@
 = TigerGraph GraphQL Service
 
 TigerGraph GraphQL Service enables users to access graph data in TigerGraph using GraphQL queries.
-Now you will be able to use any GraphQL client or to simply submit GraphQL queries directly to the service in order to quickly access the graph data in TigerGraph.
+With the TigerGraph GraphQL service, you will be able to use any GraphQL client or to simply submit GraphQL queries directly to the service to quickly access the graph data in TigerGraph.
 In the near future the service will also support data update operations via GraphQL mutations.
 
-Under the hood, TigerGraph GraphQL service works by translating and exporting the schema of the graph stored in TigerGraph to GraphQL schema.
-The GraphQL queries against this schema are in turn translated into GSQL and run on the TigerGraph database.
-The results in the form of nested JSONs are sent back to the client by the service.
+Our documentation includes a quickstart guide to help you get started with the TigerGraph GraphQL service, as well as guides on how to write GraphQL queries to access, filter, and sort graph data.
+Use the links below to get started:
+
+* xref:getting-started.adoc[]
+* xref:authentication.adoc[]
+* xref:schema.adoc[]
+* xref:queries.adoc[]
+* xref:filtering.adoc[]
+* xref:sorting.adoc[]
+* xref:pagination.adoc[]
+
+
+
 
 
