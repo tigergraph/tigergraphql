@@ -1,4 +1,4 @@
-== Quickstart
+= Quickstart
 :experimental:
 
 This quickstart walks you through:
@@ -12,11 +12,11 @@ You can view the walk-through in video format:
 
 video::myQT9kv7SnU[youtube,800,600]
 
-=== Download example solution and data
+== Download example solution and data
 . Download the https://github.com/TigerGraph-DevLabs/TigerGraphQL/raw/0.7/tigergraphql_example_solution.tar.gz[example TigerGraph solution].
 . Download the https://github.com/TigerGraph-DevLabs/TigerGraphQL/raw/0.7/tigergraphql_example_data.zip[example data set] and unzip it.
 
-=== Load data
+== Load data
 . Start up a TigerGraph instance, either xref:tigergraph-server:getting-started:docker.adoc[locally] or on xref:cloud:start:getting-started.adoc[TigerGraph Cloud].
 . Navigate to the GraphStudio homepage and click btn:[Import an Existing Solution]. Select the `.tar.gz` file you downloaded in the previous step/.
 * If you are running TigerGraph locally, you can access GraphStudio by visiting http://localhost:14240.
@@ -35,7 +35,7 @@ Click the btn:[▶] button in the toolbar above the canvas to start data loading
 
 After data loading completes, your graph is ready for use.
 
-=== Start TigerGraph GraphQL Service
+== Start TigerGraph GraphQL Service
 . Download the service binary:
 +
 |===
@@ -98,7 +98,7 @@ Now you can access the GraphQL API from the browser at the URL and port you spec
 .GraphQL API in browser
 image::graphql-browser.png[]
 
-=== Run a query
+== Run a query
 Having set up the GraphQL service, now let's try running a simple query against the API.
 You'll learn about running GraphQL queries on TigerGraph in more depth in the xref:queries.adoc[Queries section].
 For now, let's run a simple query to get all person vertices in the graph and where they are born:
