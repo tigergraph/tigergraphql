@@ -1,6 +1,7 @@
 name: tigergraphql
 title: TigerGraph GraphQL Service
 version: 0.1
+start_page: ROOT:intro.adoc
 
 nav:
   - modules/ROOT/pages/intro.adoc
