@@ -115,7 +115,7 @@ Reverse edges types are treated the same as any other directed edge when transla
 
 === Undirected edges
 An undirected edge type is translated into two GraphQL Object types, one for each direction.
-The two Object types are distinguished by a `FROM_<type>` prefix to indicate the direction of the edge.
+The two Object types are distinguished by a `From_<type>` prefix to indicate the direction of the edge.
 
 An exception is the case of self-edges, where the `FROM` and `TO` vertex types of the edge are the same.
 In this case, the undirected edge type will be translated into a single Object type, with the vertex type it is connected to mapped to the `to` field of the edge Object type.
@@ -124,11 +124,11 @@ For example, if an undirected `partner` edge exists between two vertex types `co
 
 [source,graphql]
 ----
-type FROM_company_partner {
+type From_company_partner {
     to(where: schoolFilter, whereExpr: String): school
 }
 
-type FROM_school_partner {
+type From_school_partner {
     to(where: companyFilter, whereExpr: String): company
 }
 ----
