@@ -1,0 +1,234 @@
+== Quickstart
+:experimental:
+
+This quickstart walks you through:
+
+. Setting up a TigerGraph schema and loading data to a TigerGraph instance.
+. Running an instance of TigerGraph GraphQL service and connecting to the graph in the TigerGraph instance.
+. Running GraphQL queries against the service.
+. (Optional) Running a web application built on top of the service
+
+You can view the walk-through in video format:
+
+video::myQT9kv7SnU[youtube,800,600]
+
+=== Download example solution and data
+. Download the https://github.com/TigerGraph-DevLabs/TigerGraphQL/raw/0.7/tigergraphql_example_solution.tar.gz[example TigerGraph solution].
+. Download the https://github.com/TigerGraph-DevLabs/TigerGraphQL/raw/0.7/tigergraphql_example_data.zip[example data set] and unzip it.
+
+=== Load data
+. Start up a TigerGraph instance, either xref:tigergraph-server:getting-started:docker.adoc[locally] or on xref:cloud:start:getting-started.adoc[TigerGraph Cloud].
+. Navigate to the GraphStudio homepage and click btn:[Import an Existing Solution]. Select the `.tar.gz` file you downloaded in the previous step/.
+* If you are running TigerGraph locally, you can access GraphStudio by visiting http://localhost:14240.
+* If you are running your instance on TigerGraph Cloud, you can xref:cloud:access-solution:graphstudio.adoc[navigate to GraphStudio through the Cloud portal] or visit your Cloud instance URL.
++
+.GraphStudio Homepage
+image::graphstudio-home.png[GraphStudio homepage]
+. In the upper left corner of the GraphStudio Home page, click menu:Global View[DemoGraph] to switch to the demo graph.
+. On the left-side navigation, click btn:[Map Data To Graph], which should no longer be grayed out after switching out of global view.
+. Click the btn:[Add Data File] button and upload all the `.csv` files from the decompressed data folder.
++
+.Add data file
+image::add-data-file.png[Add data file]
+. Navigate to the Load Data page by clicking btn:[Load Data] on the left-side navigation menu.
+Click the btn:[▶] button in the toolbar above the canvas to start data loading.
+
+After data loading completes, your graph is ready for use.
+
+=== Start TigerGraph GraphQL Service
+. Download the service binary:
++
+|===
+|OS |Download link
+
+|Linux X86_64
+|https://tigergraph-release-download.s3.us-west-1.amazonaws.com/tigergraphql/tigergraph-graphql-0.7.0-linux-x86_64.tar.gz
+
+|MacOS x64
+|https://tigergraph-release-download.s3.us-west-1.amazonaws.com/tigergraphql/tigergraph-graphql-0.7.0-macos-x64.tar.gz
+
+|Windows x64
+|https://tigergraph-release-download.s3.us-west-1.amazonaws.com/tigergraphql/tigergraph-graphql-0.7.0-windows-x64.zip
+|===
+
+. Start the service
++
+[tabs]
+====
+Linux/MacOS::
++
+--
+. Decompress the tarball, and there will be a binary named `tigergraphql`.
+. Run the following command from the terminal to start the service and connect to the TigerGraph instance:
++
+[source.wrap,console]
+----
+$ ./tigergraphql -s http://<url_to_tigergraph:port> -p 4000 -u tigergraph -w tigergraph -g DemoGraph <1> <2> <3> <4> <5>
+----
+<1> `-s`: The TigerGraph server URL
+<2> `-p`: The port the TigerGraph GraphQL service is served on
+<3> `-u`: GSQL username
+<4> `-w`: GSQL password
+<5> `-g`: The name of the graph to connect to
+--
+Windows::
++
+--
+. Unzip the file, and there will be a file named `tigergraphql.exe`.
+. Run the executable with the following command to start the service and connect to the TigerGraph instance:
++
+[source.wrap,console]
+----
+tigergraphql.exe -s http://<url_to_tigergraph:port> -p 4000 -u tigergraph -w tigergraph -g DemoGraph <1> <2> <3> <4> <5>
+----
+<1> `-s`: The TigerGraph server URL and port for GraphStudio
+<2> `-p`: The port the TigerGraph GraphQL service is served on
+<3> `-u`: GSQL username
+<4> `-w`: GSQL password
+<5> `-g`: The name of the graph to connect to
+--
+====
++
+The URL and port is the URL and port to access GraphStudio in the browser.
+If you are accessing a TigerGraph Cloud instance, you will need to use `https` instead of `http`, and you do not need to specify the port.
+
+If the connection is successful, you will see in the terminal that the schema is loaded and that the service is being served.
+Now you can access the GraphQL API from the browser at the URL and port you specified:
+
+.GraphQL API in browser
+image::graphql-browser.png[]
+
+=== Run a query
+Having set up the GraphQL service, now let's try running a simple query against the API.
+You'll learn about running GraphQL queries on TigerGraph in more depth in the xref:queries.adoc[Queries section].
+For now, let's run a simple query to get all person vertices in the graph and where they are born:
+
+[tabs]
+====
+Query::
++
+--
+[source,graphql]
+----
+query {
+  DemoGraph {
+    person {
+      name
+      born_in {
+        birthday
+        to {
+          name
+        }
+      }
+    }
+  }
+}
+
+----
+--
+Results::
++
+--
+[source,javascript]
+----
+{
+  "data": {
+    "DemoGraph": {
+      "person": [
+        {
+          "born_in": [
+            {
+              "birthday": "1982-07-27 00:00:00",
+              "to": {
+                "name": "redwood city"
+              }
+            }
+          ],
+          "name": "John"
+        },
+        {
+          "born_in": [
+            {
+              "birthday": "1991-12-21 00:00:00",
+              "to": {
+                "name": "san jose"
+              }
+            }
+          ],
+          "name": "Kevin"
+        },
+        {
+          "born_in": [
+            {
+              "birthday": "1995-01-01 00:00:00",
+              "to": {
+                "name": "palo alto"
+              }
+            }
+          ],
+          "name": "Jenny"
+        },
+        {
+          "born_in": [
+            {
+              "birthday": "1973-10-05 00:00:00",
+              "to": {
+                "name": "mountain view"
+              }
+            }
+          ],
+          "name": "Smith"
+        },
+        {
+          "born_in": [
+            {
+              "birthday": "1990-09-12 00:00:00",
+              "to": {
+                "name": "redwood city"
+              }
+            }
+          ],
+          "name": "Tom"
+        },
+        {
+          "born_in": [
+            {
+              "birthday": "1992-05-23 00:00:00",
+              "to": {
+                "name": "san jose"
+              }
+            }
+          ],
+          "name": "Emily"
+        }
+      ]
+    }
+  },
+  "errors": null
+}
+----
+--
+====
+
+== (Optional) Run a GraphQL-powered web application
+You can run our example React app built on top our demo data and explore how a front-end application interacts with a GraphQL API.
+
+. Download link:https://github.com/TigerGraph-DevLabs/TigerGraphQL/raw/0.7/tigergraphql_example_react.zip[the example application], unzip the file and change directory into the `tigergraphql_example_react` folder
+. If the TigerGraph GraphQL service is running on another machine, change `config.json` with the IP and port to that machine.
+If the service is running on localhost, skip this step.
++
+[source,javascript]
+----
+{
+    "GRAPHQL_API": "http://localhost:4000/graphql" <1>
+}
+
+----
+<1> Change the root url to the IP and port that the service is running on
+. Run the following command to serve the app:
++
+[source,console]
+----
+$ python server.py
+serving at port 3000
+----

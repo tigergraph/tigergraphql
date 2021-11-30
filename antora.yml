@@ -1,0 +1,13 @@
+name: tigergraphql
+title: TigerGraph GraphQL Service
+version: 0.1
+
+nav:
+  - modules/ROOT/pages/intro.adoc
+  - modules/ROOT/pages/getting-started.adoc
+  - modules/ROOT/pages/schema.adoc
+  - modules/ROOT/pages/queries.adoc
+  - modules/ROOT/pages/filtering.adoc
+  - modules/ROOT/pages/sorting.adoc
+  - modules/ROOT/pages/pagination.adoc
+  - modules/ROOT/pages/authentication.adoc

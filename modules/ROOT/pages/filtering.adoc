@@ -1,0 +1,154 @@
+= Filtering
+
+TigerGraph GraphQL service supports two methods of filtering:
+
+* Native GraphQL filtering with `where` argument
+* String expression written in GSQL.
+
+== Filter with GraphQL `where` argument
+TigerGraph GraphQL service supports filtering of query output using `where` argument for both vertices and edges of the graph.
+
+For example, the following query returns the name of everyone who is born after the year 1990:
+
+[source,graphql]
+----
+{
+  DemoGraph {
+    person(where: {
+        birthYear: {_gt: 1990}, <1>
+    }) {
+        name
+    }
+  }
+}
+
+----
+<1> The value for fields used in the `where` argument must evaluate to a boolean value.
+
+=== Boolean operators for columns
+TigerGraph GraphQL service supports the following boolean operators for columns:
+
+|===
+|Operator |Description
+
+|`_eq`
+|Equal to
+
+|`_neq`
+|Not equal to
+
+|`_lt`
+|Less than
+
+|`_lte`
+|Less than or equal to
+
+|`_gt`
+|Greater than
+
+|`_gte`
+|Greater than or equal to
+
+|`_and`
+|
+
+|`_or`
+|
+
+|`_not`
+|
+|===
+
+For example, `where: { birthYear: {_gt: 1990} }` filters the results to only objects whose `birthYear` field has a value greater than 1990.
+
+Users can specify several boolean conditions and combine them using `and`, `or`, and  `not` operators:
+
+[tabs]
+====
+Example 1::
++
+--
+Select persons who are married and born after 1990 year:
+[source,graphql]
+----
+{
+  DemoGraph {
+    person(where: {
+      _and: [
+        {birthYear: {_gt: 1990}},
+        {married: {_eq: true}}
+      ]
+    }) {
+      name,
+      birthYear
+    }
+  }
+}
+----
+--
+Example 2::
++
+--
+Select cities where the population is less than or equal to 100k or tax rate is less than 5%:
+[source,graphql]
+----
+{
+  DemoGraph {
+    city(where: {
+      _or: [
+        {population: {_lte: 100000}},
+        {taxRate: {_lt: 5}}
+      ]
+    }) {
+      name
+    }
+  }
+}
+
+----
+--
+Example 3::
++
+--
+Select companies whose zip code is not 94403:
+[source,graphql]
+----
+{
+  DemoGraph {
+    company(where: {
+      _not: {zipcode: {_eq: "94403"}}
+    }) {
+      name
+    }
+  }
+}
+----
+--
+====
+
+=== Filter with GSQL string expressions
+TigerGraph GraphQL Service supports filtering the result of a GraphQL query using the `whereExpr` argument.
+The value for the `whereExpr` argument is a string with conditions written in GSQL.
+This allows you to use complex conditions involving column comparisons as well as xref:gsql-ref:querying:func/README.adoc[functions] in the GSQL query language.
+
+WARNING: `where` and `whereExpr` conditions cannot be used at the same time.
+
+For example, you can use the xref:3.4@gsql-ref:querying:operators-and-expressions.adoc#_like[`LIKE` operator] in GSQL to filter for vertices whose name start with a specified substring:
+
+[source,graphql]
+----
+{
+  DemoGraph {
+    city(whereExpr: "name like \"San%\"") {
+      name
+    }
+  }
+}
+
+----
+
+`WhereExpr` conditions has support for the entire GSQL expression syntax including GSQL built-in functions and operators.
+See more in xref:3.4@gsql-ref:querying:operators-and-expressions.adoc[], and xref:3.4@gsql-ref:querying:func/README.adoc[].
+
+
+

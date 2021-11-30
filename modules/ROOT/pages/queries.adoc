@@ -1,0 +1,160 @@
+= Queries
+
+In TigerGraph GraphQL service, you can create GraphQL queries to fetch specific fields of vertices and edges in a graph.
+
+For example, if we have the following schema in TigerGraph:
+
+.Example schema
+image::example-schema.png[Example schema]
+
+== One-hop pattern
+We can write the following query to find all the people and their birthday and birth city.
+
+[tabs]
+====
+Query::
++
+--
+[source,graphql]
+----
+query {
+  DemoGraph {
+    person {
+      name
+      born_in {
+        to {
+          name
+        }
+      }
+    }
+  }
+}
+
+----
+--
+Results::
++
+--
+2 people are found with their names and birthday, one in Mountain View and another in Palo Alto:
+[source,javascript]
+----
+{
+  "data": {
+    "DemoGraph": {
+      "person": [
+        {
+          "born_in": [
+            {
+              "birthday": "1995-01-01 00:00:00",
+              "to": {
+                "name": "palo alto"
+              }
+            }
+          ],
+          "name": "Jenny"
+        },
+        {
+          "born_in": [
+            {
+              "birthday": "1973-10-05 00:00:00",
+              "to": {
+                "name": "mountain view"
+              }
+            }
+          ],
+          "name": "Smith"
+        }
+      ]
+    }
+  },
+  "errors": null
+}
+
+----
+--
+====
+
+== N-hop patterns
+In a GraphQL query, you can traverse multiple edges in a single request by nesting in the `to` field of edge objects.
+
+If we expand on the previous 1-hop query, we can perform multiple hops in a single query.
+On top of a person's name and their birth city, we can write the following query to also fetch the school they attend and the city in which the school is located.
+
+[tabs]
+====
+Query::
++
+--
+[source,graphql]
+----
+query {
+  DemoGraph {
+    city {
+      name
+      reverse_born_in {
+        birthday
+        to {
+          name
+          attend {
+            to {
+              name
+              locate_at_To_city {
+                to {
+                  name
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+----
+--
+Results::
++
+--
+[source,javascript]
+----
+{
+  "data": {
+    "DemoGraph": {
+      "city": [
+        {
+          "name": "mountain view",
+          "reverse_born_in": [
+            {
+              "birthday": "1973-10-05 00:00:00",
+              "to": {
+                "attend": [
+                  {
+                    "to": {
+                      "locate_at_To_city": [
+                        {
+                          "to": {
+                            "name": "san mateo"
+                          }
+                        }
+                      ],
+                      "name": "san mateo university"
+                    }
+                  }
+                ],
+                "name": "Smith"
+              }
+            }
+          ]
+        },
+        {
+          "name": "belmont",
+          "reverse_born_in": []
+        }
+      ]
+    }
+  },
+  "errors": null
+}
+----
+--
+====

@@ -1,0 +1,11 @@
+= TigerGraph GraphQL Documentation
+
+This repository contains the user-facing documentation for the TigerGraph GraphQL service.
+
+== Publishing
+
+This repository only contains the documentation source files and assets.
+The documentation will be published online for reading.
+Although you can view a preview of the files through the GitHub interface, it's not an official rendering and you should not expect all content to display properly.
+To view it properly, you should read it on the site where it is published.
+

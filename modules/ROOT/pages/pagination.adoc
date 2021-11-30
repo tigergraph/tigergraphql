@@ -1,0 +1,40 @@
+= Pagination
+
+You can use the `limit` argument to limit the number of results you want returned from a query, and the `offset` argument to specify which slice of the results you want returned.
+
+For example, the following query sorts its results in ascending order by the `name` property, and only returns the first three results:
+
+[source,graphql]
+----
+{
+  DemoGraph {
+    person (
+      order_by : {name : asc},
+      limit : 3
+    )
+       {name,
+       gender,
+       height
+    }
+  }
+}
+----
+
+Using the `offset` argument, we can specify the number of results to skip.
+The following query sorts its results in ascending order by the `name` property, only returns three results and skips the first result:
+
+[source,graphql]
+----
+{
+  DemoGraph {
+    person (
+      order_by : {name : asc},
+      limit : 3
+    )
+       {name,
+       gender,
+       height
+    }
+  }
+}
+----

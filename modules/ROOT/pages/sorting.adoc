@@ -1,0 +1,61 @@
+= Sorting
+
+You can sort the results of a query by using the `order_by` argument.
+The value for the `order_by` argument expects either of the following:
+
+* An input object, with the name of the column to sort by as the key, and either `asc` or `desc` as the value to decide whether to sort in ascending or descending order
+* An array of input objects, which will sort the query results by multiple columns
+
+
+== Sort by single column
+For example, the following query will sort its results for `person` vertices by the property `name` in alphabetical order.
+
+[source,graphql]
+----
+{
+  DemoGraph {
+    person (
+       order_by : {name : asc}
+    ) {
+      name,
+      gender,
+      height
+    }
+  }
+}
+
+----
+
+== Sort by multiple columns
+To sort by multiple fields, put the different fields and sort orders in an array.
+The following query will sort its results for `person` vertices first by `name` in ascending order, and then by `height` in descending order:
+
+[source,graphql]
+----
+
+{
+  DemoGraph {
+    person (
+      order_by : [
+        {name : asc},
+        {height :desc}
+      ]
+    ) {
+      name,
+      gender,
+      height
+    }
+  }
+}
+----
+
+== Limitations
+The following limitations apply for sorting in TigerGraph GraphQL Service:
+
+* In a multi-hop query, you can only sort results by root-level vertices
+* Only columns with values of the following types can be used for sorting:
+** Uint64
+** Int64
+** Float
+** String
+** Datetime

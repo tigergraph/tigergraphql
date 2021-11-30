@@ -1,0 +1,16 @@
+= Authentication
+:experimental:
+
+When you start up the TigerGraph GraphQL service, you can provide your TigerGraph username and password through the flags `-u` and `-p`.
+Doing so will allow TigerGraph GraphQL to make every request with the credentials you provide.
+
+If you do not include username and password when starting the service, you will need to include the encoded username and password in the request header when making a request:
+
+. Type your TigerGraph username and password in the following format, with the two strings separated by a colon: `<username>:<password>`.
+For example, if your username is `tigergraph` and your password is `password`, it should be `tigergraph:password`.
+. Encode `<username>:<password>` using link:https://www.base64encode.org/[base64 encoding].
+. At the bottom of the GraphQL client, click on btn:[HTTP-HEADERS] and include your encoded credential with the key `Authorization`.
++
+.Include encoded credentials in HTTP headers
+image::http-header-auth.png[]
+
