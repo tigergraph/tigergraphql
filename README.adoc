@@ -1,6 +1,6 @@
 = TigerGraph GraphQL Documentation
 
-This repository contains the user-facing documentation for the TigerGraph GraphQL service.
+This repository contains the user-facing documentation for TigerGraph GraphQL Service.
 
 == Publishing
 

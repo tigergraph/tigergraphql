@@ -29,7 +29,8 @@ The following query sorts its results in ascending order by the `name` property,
   DemoGraph {
     person (
       order_by : {name : asc},
-      limit : 3
+      limit : 3,
+      offset : 1
     )
        {name,
        gender,

@@ -3,7 +3,7 @@
 TigerGraph GraphQL service supports two methods of filtering:
 
 * Native GraphQL filtering with `where` argument
-* String expression written in GSQL.
+* Filtering with GSQL string expression using `whereExpr`
 
 == Filter with GraphQL `where` argument
 TigerGraph GraphQL service supports filtering of query output using `where` argument for both vertices and edges of the graph.

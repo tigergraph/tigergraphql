@@ -67,7 +67,7 @@ Linux/MacOS::
 $ ./tigergraphql -s http://<url_to_tigergraph:port> -p 4000 -u tigergraph -w tigergraph -g DemoGraph <1> <2> <3> <4> <5>
 ----
 <1> `-s`: The TigerGraph server URL
-<2> `-p`: The port the TigerGraph GraphQL service is served on
+<2> `-p`: The port TigerGraph GraphQL Service is served on
 <3> `-u`: GSQL username
 <4> `-w`: GSQL password
 <5> `-g`: The name of the graph to connect to
@@ -83,7 +83,7 @@ Windows::
 tigergraphql.exe -s http://<url_to_tigergraph:port> -p 4000 -u tigergraph -w tigergraph -g DemoGraph <1> <2> <3> <4> <5>
 ----
 <1> `-s`: The TigerGraph server URL and port for GraphStudio
-<2> `-p`: The port the TigerGraph GraphQL service is served on
+<2> `-p`: The port TigerGraph GraphQL Service is served on
 <3> `-u`: GSQL username
 <4> `-w`: GSQL password
 <5> `-g`: The name of the graph to connect to
@@ -215,7 +215,7 @@ Results::
 You can run our example React app built on top our demo data and explore how a front-end application interacts with a GraphQL API.
 
 . Download link:https://github.com/TigerGraph-DevLabs/TigerGraphQL/raw/0.7/tigergraphql_example_react.zip[the example application], unzip the file and change directory into the `tigergraphql_example_react` folder
-. If the TigerGraph GraphQL service is running on another machine, change `config.json` with the IP and port to that machine.
+. If TigerGraph GraphQL Service is running on another machine, change `config.json` with the IP and port to that machine.
 If the service is running on localhost, skip this step.
 +
 [source,javascript]
