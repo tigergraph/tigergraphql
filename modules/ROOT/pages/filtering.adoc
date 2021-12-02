@@ -148,7 +148,7 @@ For example, you can use the xref:3.4@gsql-ref:querying:operators-and-expression
 ----
 
 `WhereExpr` conditions has support for the entire GSQL expression syntax including GSQL built-in functions and operators.
-See more in xref:3.4@gsql-ref:querying:operators-and-expressions.adoc[], and xref:3.4@gsql-ref:querying:func/README.adoc[].
+See more in xref:3.3@gsql-ref:querying:operators-and-expressions.adoc[], and xref:3.3@gsql-ref:querying:func/README.adoc[].
 
 
 
