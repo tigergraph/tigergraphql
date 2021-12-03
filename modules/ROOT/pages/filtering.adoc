@@ -133,7 +133,7 @@ This allows you to use complex conditions involving column comparisons as well a
 
 WARNING: `where` and `whereExpr` conditions cannot be used at the same time.
 
-For example, you can use the xref:3.4@gsql-ref:querying:operators-and-expressions.adoc#_like[`LIKE` operator] in GSQL to filter for vertices whose name start with a specified substring:
+For example, you can use the xref:3.3@gsql-ref:querying:operators-and-expressions.adoc#_like[`LIKE` operator] in GSQL to filter for vertices whose name start with a specified substring:
 
 [source,graphql]
 ----

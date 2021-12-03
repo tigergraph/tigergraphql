@@ -26,7 +26,7 @@ type Query { <1>
 
 == Graph
 
-The xref:3.4@gsql-ref:ddl-and-loading:defining-a-graph-schema.adoc#_create_graph[graph] connected to the service is translated into an Object type in GraphQL, with all vertex types included as fields in top-level type for the entire graph.
+The xref:gsql-ref:ddl-and-loading:defining-a-graph-schema.adoc#_create_graph[graph] connected to the service is translated into an Object type in GraphQL, with all vertex types included as fields in top-level type for the entire graph.
 Each vertex field has five arguments: `where`, `whereExpr`, `order_by`, `limit`, and `offset`, which are used for xref:filtering.adoc[filtering], xref:sorting.adoc[sorting] and xref:pagination.adoc[pagination].
 
 For example, suppose to have the following schema in TigerGraph:
