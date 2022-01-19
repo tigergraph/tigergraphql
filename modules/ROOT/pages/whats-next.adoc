@@ -1,13 +1,16 @@
 = What's next
 
+We have already supported the following features:
+
+* Parameterized GraphQL queries https://graphql.org/learn/queries/#variables
+* GraphQL fragments https://graphql.org/learn/queries/#fragments
+* Support for `order-by` and `limit` on fields that represent outgoing edges from the vertices
+* GraphQL aliases https://graphql.org/learn/queries/#aliases
+
 We are actively developing new features for TigerGraph GraphQL Service.
 Here is a list of features in development:
 
 * GraphQL Mutation to change graph data
-* Parameterized GraphQL queries
-* GraphQL fragments
-* Support for `order-by` and `limit` on fields that represent outgoing edges from the vertices
-* GraphQL aliases
 
 We are eager to learn which features are most important to you, our users.
 Please give us your feedback by posting at https://community.tigergraph.com/.
