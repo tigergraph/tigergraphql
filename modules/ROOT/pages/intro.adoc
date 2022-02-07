@@ -1,4 +1,5 @@
 = TigerGraph GraphQL Service
+:page-aliases: index.adoc
 
 TigerGraph GraphQL Service enables users to access graph data in TigerGraph using GraphQL queries.
 With TigerGraph GraphQL Service, you will be able to use any GraphQL client or to simply submit GraphQL queries directly to the service to quickly access the graph data in TigerGraph.
@@ -17,6 +18,14 @@ Use the links below to get started:
 * xref:sorting.adoc[]
 * xref:pagination.adoc[]
 
+== Release note
+TigerGraph GraphQL service was released on Feb 7th, 2022.
+Here is a list of features added in this release:
+
+* Added support for link:https://graphql.org/learn/queries/#variables[parameterized queries].
+* Added support for link:https://graphql.org/learn/queries/#fragments[GraphQL fragments].
+* Support for `order-by` and `limit` on fields that represent outgoing edges from vertices
+* Added support for link:https://graphql.org/learn/queries/#aliases[GraphQL aliases].
 
 
 

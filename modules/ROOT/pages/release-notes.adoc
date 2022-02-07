@@ -1,0 +1,4 @@
+= Release notes
+:description: Release notes for TigerGraph GraphQL service 0.8.
+
+== New features
