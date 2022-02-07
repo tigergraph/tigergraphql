@@ -1,4 +1,4 @@
-* xref:intro.adoc[Introduction]
+* xref:index.adoc[Introduction]
 * xref:getting-started.adoc[]
 * xref:authentication.adoc[]
 * xref:schema.adoc[]
