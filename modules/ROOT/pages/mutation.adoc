@@ -47,7 +47,8 @@ Put the name of the graph in the top-level field of the mutation, and use `inser
 
 For the arguments of the `insert_<vertex_type_name>` field, use an `object` field.
 The object field can be a single object or a list of objects.
-The key-value pairs in the object are the from and to vertices and attributes of the edges you want to insert
+The key-value pairs in the object are the source(`from`) and sink(`to`) vertices and attributes of the edges you want to insert.
+If the edge type is undirected, you can use either endpoint vertices as either source or sink:
 
 [,graphql]
 ----

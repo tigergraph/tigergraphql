@@ -3,8 +3,8 @@
 
 In TigerGraph GraphQL service, you can create GraphQL queries to fetch specific fields of vertices and edges in a graph.
 
-NOTE: In the context of TigerGraph GraphQL service, a query usually refers to a GraphQL query, as opposed to a TigerGraph query.
-If we
+NOTE: In the context of TigerGraph GraphQL service, a query refers to a GraphQL query, as opposed to a GSQL query.
+If we ever mean to refer to a GSQL query, we use the term "GSQL query" instead of "query".
 
 For example, if we have the following schema in TigerGraph:
 
