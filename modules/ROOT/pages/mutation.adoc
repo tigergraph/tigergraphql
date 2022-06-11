@@ -3,7 +3,7 @@
 TigerGraph GraphQL Service uses https://graphql.org/learn/queries/#mutations[mutations] to insert and delete vertices and edges.
 
 == Insert vertices
-To insert vertices, use a mutation operation that specifies the graph to insert the vertices into, the primary ID and any attribute values of the vertices.
+To insert vertices, use a mutation that specifies the graph to insert the vertices into, the primary IDs and any attribute values of the vertices.
 
 Put the name of the graph in the top-level field of the mutation, and use `insert_<vertex_type_name>` as the name of the field that is one level deeper.
 
@@ -40,15 +40,17 @@ All other attributes are optional.
 <3> You can specify the fields of the newly inserted vertices to be returned.
 
 == Insert edges
-To insert edges, use a mutation that specifies the from and to vertices of the edges,
+To insert edges, use a mutation that specifies the endpoint vertices of the edges,
 and any attribute values for the edges you want to insert.
 
 Put the name of the graph in the top-level field of the mutation, and use `insert_<edge_type_name>` as the name of the field that is one level deeper.
 
-For the arguments of the `insert_<vertex_type_name>` field, use an `object` field.
+For the arguments of the `insert_<edge_type_name>` field, use an `object` field.
 The object field can be a single object or a list of objects.
 The key-value pairs in the object are the source(`from`) and sink(`to`) vertices and attributes of the edges you want to insert.
-If the edge type is undirected, you can use either endpoint vertices as either source or sink:
+If the edge type is undirected, you can use either endpoint vertices as either source or sink.
+
+For the fields inside the `insert_<edge_type_name>` field:
 
 [,graphql]
 ----
