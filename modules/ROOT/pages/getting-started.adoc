@@ -14,8 +14,8 @@ You can view the walk-through in video format:
 video::myQT9kv7SnU[youtube,800,450]
 
 == Download example solution and data
-. Download the https://github.com/TigerGraph-DevLabs/TigerGraphQL/raw/0.7/tigergraphql_example_solution.tar.gz[example TigerGraph solution].
-. Download the https://github.com/TigerGraph-DevLabs/TigerGraphQL/raw/0.7/tigergraphql_example_data.zip[example data set] and unzip it.
+. Download the https://github.com/TigerGraph-DevLabs/TigerGraphQL/raw/0.9/tigergraphql_example_solution.tar.gz[example TigerGraph solution].
+. Download the https://github.com/TigerGraph-DevLabs/TigerGraphQL/raw/0.9/tigergraphql_example_data.zip[example data set] and unzip it.
 
 == Load data
 . Start up a TigerGraph instance, either xref:tigergraph-server:getting-started:docker.adoc[locally] or on xref:cloud:start:getting-started.adoc[TigerGraph Cloud].
@@ -43,13 +43,16 @@ After data loading completes, your graph is ready for use.
 |OS |Download link
 
 |Linux X86_64
-|https://tigergraph-release-download.s3.us-west-1.amazonaws.com/tigergraphql/tigergraph-graphql-0.8.0-linux-x86_64.tar.gz
+|https://tigergraph-release-download.s3.us-west-1.amazonaws.com/tigergraphql/tigergraph-graphql-0.9.0-linux-x86_64.tar.gz
 
 |MacOS x64
-|https://tigergraph-release-download.s3.us-west-1.amazonaws.com/tigergraphql/tigergraph-graphql-0.8.0-macos-x64.tar.gz
+|https://tigergraph-release-download.s3.us-west-1.amazonaws.com/tigergraphql/tigergraph-graphql-0.9.0-macos-x64.tar.gz
+
+|MacOS x64 m1 chip
+|https://tigergraph-release-download.s3.us-west-1.amazonaws.com/tigergraphql/tigergraph-graphql-0.9.0-macos-m1-x64.tar.gz
 
 |Windows x64
-|https://tigergraph-release-download.s3.us-west-1.amazonaws.com/tigergraphql/tigergraph-graphql-0.8.0-windows-x64.zip
+|https://tigergraph-release-download.s3.us-west-1.amazonaws.com/tigergraphql/tigergraph-graphql-0.9.0-windows-x64.zip
 |===
 
 . Start the service
@@ -214,7 +217,7 @@ Results::
 == (Optional) Run a GraphQL-powered web application
 You can run our example React app built on top our demo data and explore how a front-end application interacts with a GraphQL API.
 
-. Download link:https://github.com/TigerGraph-DevLabs/TigerGraphQL/raw/0.7/tigergraphql_example_react.zip[the example application], unzip the file and change directory into the `tigergraphql_example_react` folder
+. Download link:https://github.com/TigerGraph-DevLabs/TigerGraphQL/raw/0.9/tigergraphql_example_react.zip[the example application], unzip the file and change directory into the `tigergraphql_example_react` folder
 . If TigerGraph GraphQL Service is running on another machine, change `config.json` with the IP and port to that machine.
 If the service is running on localhost, skip this step.
 +
