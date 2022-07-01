@@ -268,7 +268,7 @@ Response::
 
 
 == Delete an edge
-There are two ways to delete edge:
+There are two ways to delete an edge:
 
 * Specify conditions using a `where` filter for attribute values and delete edges that meet the condition.
 * Specify the IDs of endpoint vertices of the edge to delete.
@@ -377,7 +377,7 @@ mutation <operation_name> {
 }
 ----
 
-For example, the following mutation deletes
+For example, the following mutation deletes the friendship edge from Tom to Jenny:
 
 [tabs]
 ====
@@ -388,13 +388,13 @@ Request::
 ----
 mutation {
   Social {
-     delete_by_id_Friendship (
-      ids: [{from:{name: "Tom"}, to:{name:"Jenny"}}] )
-    {
-        from { name }
-        connect_day
-	}
-}
+    delete_by_id_Friendship (
+      ids: [{from:{name: "Tom"}, to:{name:"Jenny"}}]
+    ) {
+      from { name }
+      connect_day
+    }
+  }
 }
 ----
 --
