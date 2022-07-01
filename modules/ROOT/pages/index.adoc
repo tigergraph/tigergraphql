@@ -17,6 +17,7 @@ Use the links below to get started:
 * xref:filtering.adoc[]
 * xref:sorting.adoc[]
 * xref:pagination.adoc[]
+* xref:mutation.adoc[]
 
 == Release notes
 TigerGraph GraphQL service 0.9 was released on June 30th, 2022.
