@@ -18,14 +18,13 @@ Use the links below to get started:
 * xref:sorting.adoc[]
 * xref:pagination.adoc[]
 
-== Release note
-TigerGraph GraphQL service was released on Feb 7th, 2022.
+== Release notes
+TigerGraph GraphQL service 0.9 was released on June 30th, 2022.
 Here is a list of features added in this release:
 
-* Added support for link:https://graphql.org/learn/queries/#variables[parameterized queries].
-* Added support for link:https://graphql.org/learn/queries/#fragments[GraphQL fragments].
-* Support for `order-by` and `limit` on fields that represent outgoing edges from vertices
-* Added support for link:https://graphql.org/learn/queries/#aliases[GraphQL aliases].
+* Added support for xref:mutation.adoc[].
+* Added support for xref:authentication.adoc#_provide_credentials_when_starting_service[authenticating with GSQL secrets].
+
 
 
 
