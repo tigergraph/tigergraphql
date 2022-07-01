@@ -75,7 +75,7 @@ $ ./tigergraphql -s http://<url_to_tigergraph:port> -p 4000 -u tigergraph -w tig
 <4> `-w`: GSQL password
 <5> `-g`: The name of the graph to connect to
 --
-. You can also use the command below to connect to the TigerGraph instance using gsql secret:
+You can also use the command below to connect to the TigerGraph instance using gsql secret:
 +
 [source.wrap,console]
 ----
