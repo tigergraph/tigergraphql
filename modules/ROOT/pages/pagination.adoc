@@ -43,5 +43,5 @@ The following query sorts its results in ascending order by the `name` property,
 == Limitations
 The following limitations apply to pagination in TigerGraph GraphQL service:
 
-* When a query uses `limit` with `offset`, it must also uses the xref:sorting.adoc[`order_by`] argument.
+* When a query uses `limit` with `offset`, it must also use the xref:sorting.adoc[`order_by`] argument.
 * In a multi-hop query, pagination is only supported on root-level queries.

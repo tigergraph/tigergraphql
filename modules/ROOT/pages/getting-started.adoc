@@ -59,7 +59,7 @@ After data loading completes, your graph is ready for use.
 +
 [tabs]
 ====
-Linux/MacOS::
+Linux/macOS::
 +
 --
 . Decompress the tarball, and there will be a binary named `tigergraphql`.
@@ -74,17 +74,8 @@ $ ./tigergraphql -s http://<url_to_tigergraph:port> -p 4000 -u tigergraph -w tig
 <3> `-u`: GSQL username
 <4> `-w`: GSQL password
 <5> `-g`: The name of the graph to connect to
---
-You can also use the command below to connect to the TigerGraph instance using gsql secret:
-+
-[source.wrap,console]
-----
-$ ./tigergraphql -s http://<url_to_tigergraph:port> -p 4000 -gsqlsecret XXX -g DemoGraph <1> <2> <3> <4>
-----
-<1> `-s`: The TigerGraph server URL
-<2> `-p`: The port TigerGraph GraphQL Service is served on
-<3> `-gsqlsecret`: GSQL secret
-<4> `-g`: The name of the graph to connect to
+
+Besides GSQL username and passwords, you can also use the `-gsqlsecret` flag and use a xref:tigergraph-server:user-access:managing-credentials.adoc#_secrets[secret] as your credential.
 --
 Windows::
 +
@@ -102,6 +93,8 @@ tigergraphql.exe -s http://<url_to_tigergraph:port> -p 4000 -u tigergraph -w tig
 <4> `-w`: GSQL password
 <5> `-g`: The name of the graph to connect to
 --
+
+Besides GSQL username and passwords, you can also use the `-gsqlsecret` flag and use a xref:tigergraph-server:user-access:managing-credentials.adoc#_secrets[secret] as your credential.
 ====
 +
 The URL and port is the URL and port to access GraphStudio in the browser.
@@ -114,6 +107,7 @@ Now you can access the GraphQL API from the browser at the URL and port you spec
 image::graphql-browser.png[]
 
 == Run a query
+
 Having set up the GraphQL service, now let's try running a simple query against the API.
 You'll learn about running GraphQL queries on TigerGraph in more depth in the xref:queries.adoc[Queries section].
 For now, let's run a simple query to get all person vertices in the graph and where they are born:
