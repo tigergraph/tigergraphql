@@ -6,4 +6,3 @@
 * xref:filtering.adoc[]
 * xref:sorting.adoc[]
 * xref:pagination.adoc[]
-* xref:whats-next.adoc[]
