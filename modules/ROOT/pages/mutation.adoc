@@ -208,7 +208,7 @@ You can delete vertices by their ID.
 
 Put the name of the graph in the top-level field of the mutation, and use `delete_by_id_<vertex_type_name>` as the name of the field that is one level deeper.
 
-In the `delete_by_id_<vertex_type_name>` field, use an `ids` argument, whose value s a list of all the IDs of the vertices you want to delete.
+In the `delete_by_id_<vertex_type_name>` field, use an `ids` argument, whose value is a list of all the IDs of the vertices you want to delete.
 
 [,graphql]
 ----
