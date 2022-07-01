@@ -9,7 +9,7 @@ You can authenticate by doing either of the following:
 
 
 == Provide credentials when starting service
-When you start up TigerGraph GraphQL Service, you can provide your TigerGraph username and password through the flags `-u` and `-p`.
+When you start up TigerGraph GraphQL Service, you can provide your TigerGraph username and password through the flags `-u` and `-p`. Or if you have created a secret on the graph you want to connect to, you can provide your secret through the flag `-gsqlsecret`.
 Doing so will allow TigerGraph GraphQL to make every request with the credentials you provide.
 
 == Include credentials in HTTP headers
