@@ -1,0 +1,423 @@
+= Mutations
+
+TigerGraph GraphQL Service uses https://graphql.org/learn/queries/#mutations[mutations] to insert and delete vertices and edges.
+
+== Insert vertices
+To insert vertices, use a mutation that specifies the graph to insert the vertices into, the primary IDs and any attribute values of the vertices.
+
+Put the name of the graph in the top-level field of the mutation, and use `insert_<vertex_type_name>` as the name of the field that is one level deeper.
+
+For the arguments of the `insert_<vertex_type_name>` field, use an `object` field.
+The object field can be a single object or a list of objects.
+The key-value pairs in the object are the primary ID and the attributes of the vertices you want to insert:
+
+[,graphql]
+----
+mutation <operation_name> { <1>
+  <graph_name> {
+     insert_<vertex_type> (
+        objects: [
+            {
+                <primary_id_attribute>: <primary_id_value>, <2>
+                <attribute_name>: <attribute_value>
+                ...
+            },
+            {
+                <primary_id_attribute>: <primary_id_value>,
+                <attribute_name>: <attribute_value>
+                ...
+            }
+        ] )
+    {
+        <atrribute_name> <3>
+    }
+  }
+}
+----
+<1> Specifying an operation name is optional.
+<2> The primary ID value of the vertices you want to insert is required.
+All other attributes are optional.
+<3> You can specify the fields of the newly inserted vertices to be returned.
+
+== Insert edges
+To insert edges, use a mutation that specifies the endpoint vertices of the edges,
+and any attribute values for the edges you want to insert.
+
+Put the name of the graph in the top-level field of the mutation, and use `insert_<edge_type_name>` as the name of the field that is one level deeper.
+
+For the arguments of the `insert_<edge_type_name>` field, use an `object` field.
+The object field can be a single object or a list of objects.
+The key-value pairs in the object are the source(`from`) and sink(`to`) vertices and attributes of the edges you want to insert.
+If the edge type is undirected, you can use either endpoint vertices as either source or sink.
+
+For the fields inside the `insert_<edge_type_name>` field:
+
+[,graphql]
+----
+mutation <operation_name> {
+  <graph_name> {
+     insert_<edge_type> (
+        objects:
+          [ {
+                from: {<primary_id_attribute>: <value>},
+                to: {<primary_id_attribute>: <value>}
+            }
+          ])
+     {
+        to {
+            <attribute_name>
+            }
+     }
+  }
+}
+----
+
+For example, the following mutation creates an edge between two `Person` vertices:
+
+[tabs]
+====
+Request::
++
+--
+[,graphql]
+----
+mutation {
+  Social {
+     insert_Friendship (
+        objects:
+          [  {
+                from: {name: "Tom"},
+                to: {name: "Amily"}
+            }
+          ])
+    {
+     to {
+       name
+    	}
+    }
+  }
+}
+----
+--
+Response::
++
+--
+[,json]
+----
+{
+  "data": {
+    "Social": {
+      "Friendship": [
+        {
+          "to": {
+            "id": "Amily"
+          }
+        }
+      ]
+    }
+  },
+  "errors": null
+}
+----
+--
+====
+
+== Delete vertices
+There are two ways to delete vertices:
+
+* Specify conditions using a `where` filter for attribute values and delete vertices that meet the condition.
+* Specify the IDs of the vertices to delete.
+
+=== Delete by filter
+To delete vertices that meet certain conditions, use the GraphQL `where` filter to specify the conditions.
+
+Put the name of the graph in the top-level field of the mutation, and use `delete_<vertex_type_name>` as the name of the field that is one level deeper.
+
+In the `delete_<vertex_type_name>` field, use a xref:filtering.adoc#_filter_with_graphql_where_argument[`where` field] to specify the filter conditions.
+Vertices that meet the conditions are deleted by the mutation.
+
+The filter conditions only apply to the attributes of a vertex.
+If a vertex's primary ID is not declared as an attribute, you cannot use the primary ID to filter for vertices to delete.
+
+[,graphql]
+----
+mutation <operation_name> {
+  <graph_name> {
+     delete_<vertex_type> (
+        where: {
+            <conditions>
+        })
+    {
+    <attribute_name>
+    }
+}
+----
+
+For example, the following mutation deletes vertices that have the state attribute equal to `az` and have the age attribute greater than 25.
+In the response, the mutation asks for the name and age of the deleted vertices, and the only deleted vertex is `Kevin`:
+
+[tabs]
+====
+Request::
++
+--
+[,graphql]
+----
+mutation {
+  Social {
+     delete_Person (
+      where: {
+  		_and: [
+    	   {state: {_eq: "az"}},
+    	   {age: {_gt: "25"}},
+  		]
+	})
+    {
+    name
+    age
+    }
+}
+}
+----
+--
+Response::
++
+--
+[,json]
+----
+{
+  "data": {
+    "Social": {
+      "Person": [
+        {
+          "age": 28,
+          "name": "Kevin"
+        }
+      ]
+    }
+  },
+  "errors": null
+}
+----
+--
+====
+
+=== Delete by ID
+
+You can delete vertices by their ID.
+
+Put the name of the graph in the top-level field of the mutation, and use `delete_by_id_<vertex_type_name>` as the name of the field that is one level deeper.
+
+In the `delete_by_id_<vertex_type_name>` field, use an `ids` argument, whose value is a list of all the IDs of the vertices you want to delete.
+
+[,graphql]
+----
+mutation <operation_name> {
+  <graph_name> {
+     delete_by_id_Person (ids: [<id_value>, <id_value>] ... )
+    {
+        id
+    }
+  }
+}
+----
+
+For example, the following mutation deletes vertices with the ID `Amily`:
+
+[tabs]
+====
+Request::
++
+--
+[,graphql]
+----
+mutation {
+  Social {
+     delete_by_id_Person (
+				ids: ["Amily"]
+	)
+    {
+        name
+        age
+    }
+}
+}
+----
+--
+Response::
++
+--
+[,graphql]
+----
+{
+  "data": {
+    "Social": {
+      "Person": [
+        {
+          "age": 22,
+          "name": "Amily"
+        }
+      ]
+    }
+  },
+  "errors": null
+}
+----
+--
+====
+
+
+== Delete an edge
+There are two ways to delete an edge:
+
+* Specify conditions using a `where` filter for attribute values and delete edges that meet the condition.
+* Specify the IDs of endpoint vertices of the edge to delete.
+
+=== Delete by filter
+To delete edges that meet certain conditions, use the GraphQL `where` filter to specify the conditions.
+
+Put the name of the graph in the top-level field of the mutation, and use `delete_<edge_type_name>` as the name of the field that is one level deeper.
+
+In the `delete_<edge_type_name>` field, use a xref:filtering.adoc#_filter_with_graphql_where_argument[`where` field] to specify the filter conditions.
+Edges that meet the conditions are deleted by the mutation.
+
+[,graphql]
+----
+mutation <operation_name> {
+  <graph_name> {
+     delete_<edge_type> (
+        where: {
+    	   <conditions>
+        })
+    {
+        <attributes>
+        <endpoint_vertex_attributes>
+    }
+  }
+}
+----
+
+For example, the mutation below deletes edges with the `connect_day` greater than `"2001-09-01"`:
+
+[tabs]
+====
+Request::
++
+--
+[,graphql]
+----
+mutation {
+  Social {
+        delete_Friendship (
+            where: {
+                connect_day: {_gt: "2001-09-01"}
+            })
+    {
+        from { id }
+    }
+  }
+}
+----
+--
+Response::
++
+--
+[,json]
+----
+{
+  "data": {
+    "Social": {
+      "Friendship": [
+        {
+          "connect_day": "2017-06-03 00:00:00",
+          "from": {
+            "id": "Dan"
+          }
+        },
+        {
+          "connect_day": "2017-06-03 00:00:00",
+          "from": {
+            "id": "Tom"
+          }
+        }
+      ]
+    }
+  },
+  "errors": null
+}
+----
+--
+====
+
+=== Delete by vertex IDs
+
+You can delete edges by specifying the IDs of their endpoint vertices.
+
+Put the name of the graph in the top-level field of the mutation, and use `delete_by_id_<edge_type_name>` as the name of the field that is one level deeper.
+
+In the `delete_by_id_<edge_type_name>` field, use an object with a `from` and `to` field, each containing the source and sink vertex of the edge.
+If the edge is undirected, you can use either of the endpoint vertices as the source or sink.
+As long as you provide both endpoint vertices, the edge is deleted.
+
+[,graphql]
+----
+mutation <operation_name> {
+  <graph_name> {
+     delete_by_id_<edge_type_name> (
+      ids: [
+        {
+            from:{ <primary_id_attribute>: <value> },
+            to:{ <primary_id_attribute>: <value> }
+        }] )
+    {
+        <attributes>
+        <endpoint_vertex_attributes>
+	}
+}
+}
+----
+
+For example, the following mutation deletes the friendship edge from Tom to Jenny:
+
+[tabs]
+====
+Request::
++
+--
+[,graphql]
+----
+mutation {
+  Social {
+    delete_by_id_Friendship (
+      ids: [{from:{name: "Tom"}, to:{name:"Jenny"}}]
+    ) {
+      from { name }
+      connect_day
+    }
+  }
+}
+----
+--
+Response::
++
+--
+[,json]
+----
+{
+  "data": {
+    "Social": {
+      "Friendship": [
+        {
+          "connect_day": "2015-01-01 00:00:00",
+          "from": {
+            "id": "Tom"
+          }
+        }
+      ]
+    }
+  },
+  "errors": null
+}
+----
+--
+====
