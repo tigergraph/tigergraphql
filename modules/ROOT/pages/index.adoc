@@ -6,7 +6,7 @@ With TigerGraph GraphQL Service, you can use any GraphQL client or simply submit
 
 NOTE: TigerGraph GraphQL Service works with TigerGraph versions 3.0 and above.
 
-Our documentation includes a quickstart guide to help you get started with TigerGraph GraphQL Service, as well as guides on how to write GraphQL queries to access, filter, and sort graph data.
+Our documentation includes a quickstart guide to help you get started with TigerGraph GraphQL Service, as well as guides on how to write GraphQL queries to access, filter, sort, and modify graph data.
 Use the following links to get started:
 
 * xref:getting-started.adoc[]
