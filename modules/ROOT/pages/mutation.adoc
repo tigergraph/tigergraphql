@@ -39,6 +39,63 @@ mutation <operation_name> { <1>
 All other attributes are optional.
 <3> You can specify the fields of the newly inserted vertices to be returned.
 
+For example, the following request creates two `Person` vertices with ID `John` and `Mary`:
+
+[tabs]
+====
+Request::
++
+--
+[,graphql]
+----
+mutation {
+  DemoGraph {
+     insert_person (
+      objects: [
+        {
+          id: "person_1",
+          name: "John",
+        	birthYear: 1989
+        },
+        {
+          id: "person_2",
+          name: "Mary",
+        	birthYear: 2001
+        }] )
+    {
+     	id
+    }
+  }
+}
+
+----
+--
+Response::
++
+--
+[,json]
+----
+{
+  "data": {
+    "insert_person": {
+      "DemoGraph": {
+        "person": [
+          {
+            "id": "person_1"
+          },
+          {
+            "id": "person_2"
+          }
+        ]
+      }
+    }
+  },
+  "errors": null
+}
+----
+--
+====
+
 == Insert edges
 To insert edges, use a mutation that specifies the endpoint vertices of the edges,
 and any attribute values for the edges you want to insert.
@@ -72,7 +129,7 @@ mutation <operation_name> {
 }
 ----
 
-For example, the following mutation creates an edge between two `Person` vertices:
+For example, the following mutation creates an edge between a `person` vertex and a `city` vertex:
 
 [tabs]
 ====
@@ -82,18 +139,13 @@ Request::
 [,graphql]
 ----
 mutation {
-  Social {
-     insert_Friendship (
-        objects:
-          [  {
-                from: {name: "Tom"},
-                to: {name: "Amily"}
-            }
-          ])
-    {
-     to {
-       name
-    	}
+  DemoGraph {
+    insert_born_in(
+      objects: [{ from: { id: "person_1" }, to: { id: "city_1" } }]
+    ) {
+      from {
+        id
+      }
     }
   }
 }
@@ -106,14 +158,16 @@ Response::
 ----
 {
   "data": {
-    "Social": {
-      "Friendship": [
-        {
-          "to": {
-            "id": "Amily"
+    "insert_born_in": {
+      "DemoGraph": {
+        "born_in": [
+          {
+            "from": {
+              "id": "person_1"
+            }
           }
-        }
-      ]
+        ]
+      }
     }
   },
   "errors": null
@@ -153,8 +207,8 @@ mutation <operation_name> {
 }
 ----
 
-For example, the following mutation deletes vertices that have the state attribute equal to `az` and have the age attribute greater than 25.
-In the response, the mutation asks for the name and age of the deleted vertices, and the only deleted vertex is `Kevin`:
+For example, the following mutation deletes vertices that have the name "John" or "Mary".
+In the response, the mutation asks for the ID of the deleted vertices:
 
 [tabs]
 ====
@@ -164,20 +218,15 @@ Request::
 [,graphql]
 ----
 mutation {
-  Social {
-     delete_Person (
-      where: {
-  		_and: [
-    	   {state: {_eq: "az"}},
-    	   {age: {_gt: "25"}},
-  		]
-	})
-    {
-    name
-    age
+  DemoGraph {
+    delete_person(
+      where: { _or: [{ name: { _eq: "John" } }, { name: { _eq: "Mary" } }] }
+    ) {
+      id
     }
+  }
 }
-}
+
 ----
 --
 Response::
@@ -187,13 +236,20 @@ Response::
 ----
 {
   "data": {
-    "Social": {
-      "Person": [
-        {
-          "age": 28,
-          "name": "Kevin"
-        }
-      ]
+    "delete_person": {
+      "DemoGraph": {
+        "person": [
+          {
+            "id": "person_1"
+          },
+          {
+            "id": "John"
+          },
+          {
+            "id": "person_2"
+          }
+        ]
+      }
     }
   },
   "errors": null
@@ -204,7 +260,7 @@ Response::
 
 === Delete by ID
 
-You can delete vertices by their ID.
+You can delete vertices by their primary ID if the vertex type's primary ID is not an attribute.
 
 Put the name of the graph in the top-level field of the mutation, and use `delete_by_id_<vertex_type_name>` as the name of the field that is one level deeper.
 
@@ -232,7 +288,7 @@ Request::
 [,graphql]
 ----
 mutation {
-  Social {
+  Social { <1>
      delete_by_id_Person (
 				ids: ["Amily"]
 	)
@@ -243,6 +299,7 @@ mutation {
 }
 }
 ----
+<1> This example uses a different schema because all types in the `DemoGraph` example schema has primary ID as an attribute, which disables deletion by ID.
 --
 Response::
 +
@@ -297,7 +354,7 @@ mutation <operation_name> {
 }
 ----
 
-For example, the mutation below deletes edges with the `connect_day` greater than `"2001-09-01"`:
+For example, the mutation below deletes edges with the `start_time` greater than `"2001-09-01"`:
 
 [tabs]
 ====
@@ -307,13 +364,11 @@ Request::
 [,graphql]
 ----
 mutation {
-  Social {
-        delete_Friendship (
-            where: {
-                connect_day: {_gt: "2001-09-01"}
-            })
-    {
-        from { id }
+  DemoGraph {
+    delete_attend(where: { start_time: { _gt: "2001-09-01" } }) {
+      from {
+        id
+      }
     }
   }
 }
@@ -326,21 +381,31 @@ Response::
 ----
 {
   "data": {
-    "Social": {
-      "Friendship": [
-        {
-          "connect_day": "2017-06-03 00:00:00",
-          "from": {
-            "id": "Dan"
+    "delete_attend": {
+      "DemoGraph": {
+        "attend": [
+          {
+            "from": {
+              "id": "Kevin"
+            }
+          },
+          {
+            "from": {
+              "id": "Emily"
+            }
+          },
+          {
+            "from": {
+              "id": "Tom"
+            }
+          },
+          {
+            "from": {
+              "id": "Jenny"
+            }
           }
-        },
-        {
-          "connect_day": "2017-06-03 00:00:00",
-          "from": {
-            "id": "Tom"
-          }
-        }
-      ]
+        ]
+      }
     }
   },
   "errors": null
@@ -351,7 +416,7 @@ Response::
 
 === Delete by vertex IDs
 
-You can delete edges by specifying the IDs of their endpoint vertices.
+You can delete edges by specifying the IDs of their endpoint vertices if their endpoint vertex types do not have their primary ID as an attribute.
 
 Put the name of the graph in the top-level field of the mutation, and use `delete_by_id_<edge_type_name>` as the name of the field that is one level deeper.
 
@@ -387,7 +452,7 @@ Request::
 [,graphql]
 ----
 mutation {
-  Social {
+  Social { <1>
     delete_by_id_Friendship (
       ids: [{from:{name: "Tom"}, to:{name:"Jenny"}}]
     ) {
@@ -397,6 +462,7 @@ mutation {
   }
 }
 ----
+<1> This example uses a different schema because all types in the `DemoGraph` example schema has primary ID as an attribute, which disables deletion by ID.
 --
 Response::
 +
