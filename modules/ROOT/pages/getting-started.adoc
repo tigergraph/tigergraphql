@@ -28,6 +28,7 @@ image::graphstudio-home.png[GraphStudio homepage]
 . In the upper left corner of the GraphStudio Home page, click menu:Global View[DemoGraph] to switch to the demo graph.
 . On the left-side navigation, click btn:[Map Data To Graph], which should no longer be grayed out after switching out of global view.
 . Click the btn:[Add Data File] button and upload all the `.csv` files from the decompressed data folder.
+Click btn:[Publish data mapping] to publish data mapping.
 +
 .Add data file
 image::add-data-file.png[Add data file]
