@@ -5,22 +5,18 @@
 This quickstart walks you through:
 
 . Setting up a TigerGraph schema and loading data to a TigerGraph instance.
-. Running an instance of TigerGraph GraphQL service and connecting to the graph in the TigerGraph instance.
+. Access TigerGraph GraphQL service and connecting to the graph in the TigerGraph instance.
 . Running GraphQL queries against the service.
 . (Optional) Running a web application built on top of the service
-
-You can view the walk-through in video format:
-
-video::myQT9kv7SnU[youtube,800,450]
 
 == Download example solution and data
 . Download the https://github.com/TigerGraph-DevLabs/TigerGraphQL/raw/0.9/tigergraphql_example_solution.tar.gz[example TigerGraph solution].
 . Download the https://github.com/TigerGraph-DevLabs/TigerGraphQL/raw/0.9/tigergraphql_example_data.zip[example data set] and unzip it.
 
 == Load data
-. Start up a TigerGraph instance, either xref:tigergraph-server:getting-started:docker.adoc[locally] or on xref:cloud:start:getting-started.adoc[TigerGraph Cloud].
+. Start up a TigerGraph instance, either xref:tigergraph-server:getting-started:docker.adoc[locally] or on xref:cloud:start:overview.adoc[TigerGraph Cloud].
 . Navigate to the GraphStudio homepage and click btn:[Import an Existing Solution]. Select the `.tar.gz` file you downloaded in the previous step/.
-* If you are running TigerGraph locally, you can access GraphStudio by visiting http://localhost:14240.
+* If you are running TigerGraph locally, you can access GraphStudio by visiting http://localhost:14240 and select GraphStudio.
 * If you are running your instance on TigerGraph Cloud, you can xref:cloud:access-solution:graphstudio.adoc[navigate to GraphStudio through the Cloud portal] or visit your Cloud instance URL.
 +
 .GraphStudio Homepage
@@ -37,79 +33,18 @@ Click the btn:[▶] button in the toolbar above the canvas to start data loading
 
 After data loading completes, your graph is ready for use.
 
-== Start TigerGraph GraphQL Service
-. Download the service binary:
-+
-|===
-|OS |Download link
+== Access TigerGraph GraphQL Service
+To access the GraphQL service, click the nine-dot icon in the top right corner of the screen and click GraphQL.
 
-|Linux X86_64
-|https://tigergraph-release-download.s3.us-west-1.amazonaws.com/tigergraphql/tigergraph-graphql-0.9.0-linux-x86_64.tar.gz
-
-|MacOS x64
-|https://tigergraph-release-download.s3.us-west-1.amazonaws.com/tigergraphql/tigergraph-graphql-0.9.0-macos-x64.tar.gz
-
-|MacOS x64 m1 chip
-|https://tigergraph-release-download.s3.us-west-1.amazonaws.com/tigergraphql/tigergraph-graphql-0.9.0-macos-m1-x64.tar.gz
-
-|Windows x64
-|https://tigergraph-release-download.s3.us-west-1.amazonaws.com/tigergraphql/tigergraph-graphql-0.9.0-windows-x64.zip
-|===
-
-. Start the service
-+
-[tabs]
-====
-Linux/macOS::
-+
---
-. Decompress the tarball, and there will be a binary named `tigergraphql`.
-. Run the following command from the terminal to start the service and connect to the TigerGraph instance:
-+
-[source.wrap,console]
-----
-$ ./tigergraphql -s http://<url_to_tigergraph:port> -p 4000 -u tigergraph -w tigergraph -g DemoGraph <1> <2> <3> <4> <5>
-----
-<1> `-s`: The TigerGraph server URL
-<2> `-p`: The port TigerGraph GraphQL Service is served on
-<3> `-u`: GSQL username
-<4> `-w`: GSQL password
-<5> `-g`: The name of the graph to connect to
-
-Besides GSQL username and passwords, you can also use the `-gsqlsecret` flag and use a xref:tigergraph-server:user-access:managing-credentials.adoc#_secrets[secret] as your credential.
---
-Windows::
-+
---
-. Unzip the file, and there will be a file named `tigergraphql.exe`.
-. Run the executable with the following command to start the service and connect to the TigerGraph instance:
-+
-[source.wrap,console]
-----
-tigergraphql.exe -s http://<url_to_tigergraph:port> -p 4000 -u tigergraph -w tigergraph -g DemoGraph <1> <2> <3> <4> <5>
-----
-<1> `-s`: The TigerGraph server URL and port for GraphStudio
-<2> `-p`: The port TigerGraph GraphQL Service is served on
-<3> `-u`: GSQL username
-<4> `-w`: GSQL password
-<5> `-g`: The name of the graph to connect to
---
-
-Besides GSQL username and passwords, you can also use the `-gsqlsecret` flag and use a xref:tigergraph-server:user-access:managing-credentials.adoc#_secrets[secret] as your credential.
-====
-+
-The URL and port is the URL and port to access GraphStudio in the browser.
-If you are accessing a TigerGraph Cloud instance, you will need to use `https` instead of `http`, and you do not need to specify the port.
-
-If the connection is successful, you will see in the terminal that the schema is loaded and that the service is being served.
-Now you can access the GraphQL API from the browser at the URL and port you specified:
+Right under the top pane in the up right corner, select the graph you want to query against.
+In this case, we'll select DemoGraph.
 
 .GraphQL API in browser
 image::graphql-browser.png[]
 
 == Run a query
 
-Having set up the GraphQL service, now let's try running a simple query against the API.
+Let's try running a simple query against the API.
 You'll learn about running GraphQL queries on TigerGraph in more depth in the xref:queries.adoc[Queries section].
 For now, let's run a simple query to get all person vertices in the graph and where they are born:
 
