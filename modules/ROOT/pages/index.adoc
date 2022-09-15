@@ -8,7 +8,6 @@ Our documentation includes a quickstart guide to help you get started with Tiger
 Use the following links to get started:
 
 * xref:getting-started.adoc[]
-* xref:authentication.adoc[]
 * xref:schema.adoc[]
 * xref:queries.adoc[]
 * xref:filtering.adoc[]

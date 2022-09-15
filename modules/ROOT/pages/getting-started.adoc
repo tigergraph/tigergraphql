@@ -155,25 +155,25 @@ Results::
 --
 ====
 
-== (Optional) Run a GraphQL-powered web application
-You can run our example React app built on top our demo data and explore how a front-end application interacts with a GraphQL API.
-
-. Download link:https://github.com/TigerGraph-DevLabs/TigerGraphQL/raw/0.9/tigergraphql_example_react.zip[the example application], unzip the file and change directory into the `tigergraphql_example_react` folder
-. If TigerGraph GraphQL Service is running on another machine, change `config.json` with the IP and port to that machine.
-If the service is running on localhost, skip this step.
-+
-[source,javascript]
-----
-{
-    "GRAPHQL_API": "http://localhost:4000/graphql" <1>
-}
-
-----
-<1> Change the root url to the IP and port that the service is running on
-. Run the following command to serve the app:
-+
-[source,console]
-----
-$ python server.py
-serving at port 3000
-----
+//== (Optional) Run a GraphQL-powered web application
+//You can run our example React app built on top our demo data and explore how a front-end application interacts with a GraphQL API.
+//
+//. Download link:https://github.com/TigerGraph-DevLabs/TigerGraphQL/raw/0.9/tigergraphql_example_react.zip[the example application], unzip the file and change directory into the `tigergraphql_example_react` folder
+//. If TigerGraph GraphQL Service is running on another machine, change `config.json` with the IP and port to that machine.
+//If the service is running on localhost, skip this step.
+//+
+//[source,javascript]
+//----
+//{
+//    "GRAPHQL_API": "http://localhost:4000/graphql" <1>
+//}
+//
+//----
+//<1> Change the root url to the IP and port that the service is running on
+//. Run the following command to serve the app:
+//+
+//[source,console]
+//----
+//$ python server.py
+//serving at port 3000
+//----
