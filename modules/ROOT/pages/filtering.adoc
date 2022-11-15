@@ -129,7 +129,7 @@ Select companies whose zip code is not 94403:
 == Filter with GSQL string expressions
 TigerGraph GraphQL Service supports filtering the result of a GraphQL query using the `whereExpr` argument.
 The value for the `whereExpr` argument is a string with conditions written in GSQL.
-This allows you to use complex conditions involving column comparisons as well as xref:gsql-ref:querying:func/README.adoc[functions] in the GSQL query language.
+This allows you to use complex conditions involving column comparisons as well as xref:gsql-ref:querying:func/index.adoc[functions] in the GSQL query language.
 
 WARNING: `where` and `whereExpr` conditions cannot be used at the same time.
 
