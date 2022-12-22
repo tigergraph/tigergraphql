@@ -155,10 +155,28 @@ Results::
 --
 ====
 
+
+== Programmatically run a GraphQL query
+The GraphQL service UI is a quick way to validate the query result.
+To programmatically run a GraphQL query or integrate with your application, you need to provide credentials to authenticate your requests.
+You can authenticate by including encrypted credentials in HTTP headers.
+
+Type your TigerGraph username and password in the following format, with the two strings separated by a colon: `<username>:<password>`.
+For example, if your username is tigergraph and your password is password, it should be `tigergraph:password`.
+
+Encode `<username>:<password>` using base64 encoding. In this example, you get `dGlnZXJncmFwaDpwYXNzd29yZA==`
+
+Use this curl command to test it out:
+
+[source.wrap, console]
+----
+curl --header “Authorization: Basic dGlnZXJncmFwaDpwYXNzd29yZA==” -X POST <TigerGraph-domain>:<port>/api/graphql/gsql/DemoGraph -d ‘{“query”:”query { DemoGraph { person { name born_in { birthday to { name } } } } }”, "variables": null}’
+----
+//
 //== (Optional) Run a GraphQL-powered web application
 //You can run our example React app built on top our demo data and explore how a front-end application interacts with a GraphQL API.
 //
-//. Download link:https://github.com/TigerGraph-DevLabs/TigerGraphQL/raw/0.9/tigergraphql_example_react.zip[the example application], unzip the file and change directory into the `tigergraphql_example_react` folder
+//. Download link:https://github.com/TigerGraph-DevLabs/TigerGraphQL/raw/0.7/tigergraphql_example_react.zip[the example application], unzip the file and change directory into the `tigergraphql_example_react` folder
 //. If TigerGraph GraphQL Service is running on another machine, change `config.json` with the IP and port to that machine.
 //If the service is running on localhost, skip this step.
 //+
