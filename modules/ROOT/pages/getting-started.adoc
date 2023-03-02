@@ -17,7 +17,7 @@ This quickstart walks you through:
 . Start up a TigerGraph instance, either xref:tigergraph-server:getting-started:docker.adoc[locally] or on xref:cloud:start:overview.adoc[TigerGraph Cloud].
 . Navigate to the GraphStudio homepage and click btn:[Import an Existing Solution]. Select the `.tar.gz` file you downloaded in the previous step/.
 * If you are running TigerGraph locally, you can access GraphStudio by visiting http://localhost:14240 and select GraphStudio.
-* If you are running your instance on TigerGraph Cloud, you can xref:cloud:access-solution:graphstudio.adoc[navigate to GraphStudio through the Cloud portal] or visit your Cloud instance URL.
+* If you are running your instance on TigerGraph Cloud, you can xref:cloud:solutions:access-solution/graphstudio.adoc[navigate to GraphStudio through the Cloud portal] or visit your Cloud instance URL.
 +
 .GraphStudio Homepage
 image::graphstudio-home.png[GraphStudio homepage]
