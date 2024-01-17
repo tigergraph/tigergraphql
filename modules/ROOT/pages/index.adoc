@@ -8,13 +8,44 @@ Our documentation includes a quickstart guide to help you get started with Tiger
 Use the following links to get started:
 
 * xref:getting-started.adoc[]
-* xref:schema.adoc[]
-* xref:queries.adoc[]
-* xref:filtering.adoc[]
-* xref:sorting.adoc[]
-* xref:pagination.adoc[]
-* xref:mutation.adoc[]
 
+Already familiar with GSQL? Skip ahead to What sets GSQL apart to learn more about the language design, or first get to know GSQL below.
+
+
+== Get to Know GraphQL
+[.home-card,cols="2",grid=none,frame=none]
+|===
+a|
+*Schema*
+
+* xref:schema.adoc[]
+
+a|
+*Queries*
+
+* xref:queries.adoc[]
+
+a|
+*Filtering*
+
+* xref:filtering.adoc[]
+
+a|
+*Sorting*
+
+* xref:sorting.adoc[]
+
+a|
+*Pagination*
+
+* xref:pagination.adoc[]
+
+a|
+*Mutation*
+
+* xref:mutation.adoc[]
+a|
+|===
 
 
 
