@@ -4,13 +4,7 @@
 TigerGraph GraphQL Service enables users to access and modify graph data in TigerGraph using GraphQL queries.
 With TigerGraph GraphQL Service, you can use any GraphQL client or simply submit GraphQL queries directly to the service to access the graph data in TigerGraph.
 
-Our documentation includes a quickstart guide to help you get started with TigerGraph GraphQL Service, as well as guides on how to write GraphQL queries to access, filter, sort, and modify graph data.
-Use the following links to get started:
-
-* xref:getting-started.adoc[]
-
-Already familiar with GSQL? Skip ahead to What sets GSQL apart to learn more about the language design, or first get to know GSQL below.
-
+Already familiar with GraphQL? Skip ahead to the xref:getting-started.adoc[] or first get to know GraphQL below.
 
 == Get to Know GraphQL
 [.home-card,cols="2",grid=none,frame=none]
@@ -18,32 +12,34 @@ Already familiar with GSQL? Skip ahead to What sets GSQL apart to learn more abo
 a|
 *Schema*
 
-* xref:schema.adoc[]
+Learn how TigerGraph GraphQL Service translates TigerGraph’s GSQL schema into a GraphQL
+xref:schema.adoc[].
 
 a|
 *Queries*
 
-* xref:queries.adoc[]
+Learn how to create GraphQL xref:queries.adoc[] to fetch specific fields of vertices and edges in a graph.
 
 a|
 *Filtering*
 
-* xref:filtering.adoc[]
+Learn how GraphQL service supports xref:filtering.adoc[] of query outputs.
 
 a|
 *Sorting*
 
-* xref:sorting.adoc[]
+Learn how GraphQL can xref:sorting.adoc[sort] the results of a query.
 
 a|
 *Pagination*
 
-* xref:pagination.adoc[]
+Learn how to limit the number of results you want returned from a query with
+xref:pagination.adoc[].
 
 a|
 *Mutation*
 
-* xref:mutation.adoc[]
+Learn how GraphQL uses xref:mutation.adoc[] to insert and delete vertices and edges.
 a|
 |===
 
