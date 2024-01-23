@@ -4,42 +4,48 @@
 TigerGraph GraphQL Service enables users to access and modify graph data in TigerGraph using GraphQL queries.
 With TigerGraph GraphQL Service, you can use any GraphQL client or simply submit GraphQL queries directly to the service to access the graph data in TigerGraph.
 
-Already familiar with GraphQL? Skip ahead to the xref:getting-started.adoc[] or first get to know GraphQL below.
+Already familiar with GraphQL? Skip ahead to the xref:getting-started.adoc[Get Started ↗] or first get to know GraphQL below.
 
 == Get to Know GraphQL
 [.home-card,cols="2",grid=none,frame=none]
 |===
 a|
+image:TG_Icon_Library-107.png[alt=getstarted,width=74,height=74]
 *Schema*
 
 Learn how TigerGraph GraphQL Service translates TigerGraph’s GSQL schema into a GraphQL
-xref:schema.adoc[].
+xref:schema.adoc[Schema ↗]
 
 a|
+image:querying-homecard.png[alt=getstarted,width=74,height=74]
 *Queries*
 
-Learn how to create GraphQL xref:queries.adoc[] to fetch specific fields of vertices and edges in a graph.
+Learn how to create GraphQL xref:queries.adoc[Queries ↗] to fetch specific fields of vertices and edges in a graph.
 
 a|
+image:Filter.png[alt=getstarted,width=74,height=74]
 *Filtering*
 
-Learn how GraphQL service supports xref:filtering.adoc[] of query outputs.
+Learn how GraphQL service supports xref:filtering.adoc[Filtering ↗] of query outputs.
 
 a|
+image:schema-homecard.png[alt=getstarted,width=74,height=74]
 *Sorting*
 
-Learn how GraphQL can xref:sorting.adoc[sort] the results of a query.
+Learn how GraphQL can xref:sorting.adoc[Sort ↗] the results of a query.
 
 a|
+image:TG_Icon_Library-149.png[alt=getstarted,width=74,height=74]
 *Pagination*
 
 Learn how to limit the number of results you want returned from a query with
-xref:pagination.adoc[].
+xref:pagination.adoc[Pagination ↗]
 
 a|
+image:TG_Icon_Library-218.png[alt=getstarted,width=74,height=74]
 *Mutation*
 
-Learn how GraphQL uses xref:mutation.adoc[] to insert and delete vertices and edges.
+Learn how GraphQL uses xref:mutation.adoc[Mutation ↗] to insert and delete vertices and edges.
 a|
 |===
 
