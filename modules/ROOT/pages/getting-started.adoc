@@ -1,4 +1,4 @@
-= Quickstart
+= Get Started
 :experimental:
 :sectnums:
 

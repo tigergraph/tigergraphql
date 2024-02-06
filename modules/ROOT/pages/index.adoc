@@ -4,17 +4,50 @@
 TigerGraph GraphQL Service enables users to access and modify graph data in TigerGraph using GraphQL queries.
 With TigerGraph GraphQL Service, you can use any GraphQL client or simply submit GraphQL queries directly to the service to access the graph data in TigerGraph.
 
-Our documentation includes a quickstart guide to help you get started with TigerGraph GraphQL Service, as well as guides on how to write GraphQL queries to access, filter, sort, and modify graph data.
-Use the following links to get started:
+Already familiar with GraphQL? Skip ahead to the xref:getting-started.adoc[Get Started] or get to know GraphQL below.
 
-* xref:getting-started.adoc[]
-* xref:schema.adoc[]
-* xref:queries.adoc[]
-* xref:filtering.adoc[]
-* xref:sorting.adoc[]
-* xref:pagination.adoc[]
-* xref:mutation.adoc[]
+== Get to Know GraphQL
+[.home-card,cols="2",grid=none,frame=none, separator=¦]
+|===
+¦
+image:TG_Icon_Library-107.png[alt=getstarted,width=74,height=74]
+*Schema*
 
+Learn how TigerGraph GraphQL Service translates GSQL schema into a GraphQL
+xref:schema.adoc[Schema].
+
+¦
+image:querying-homecard.png[alt=getstarted,width=74,height=74]
+*Queries*
+
+Learn how to create GraphQL xref:queries.adoc[Queries] to fetch specific fields of vertices and edges in a graph.
+
+¦
+image:Filter.png[alt=getstarted,width=74,height=74]
+*Filtering*
+
+Learn how GraphQL service supports xref:filtering.adoc[Filtering] of query outputs.
+
+¦
+image:schema-homecard.png[alt=getstarted,width=74,height=74]
+*Sorting*
+
+Learn how GraphQL can xref:sorting.adoc[Sort] the results of a query.
+
+¦
+image:TG_Icon_Library-149.png[alt=getstarted,width=74,height=74]
+*Pagination*
+
+Learn how to limit the number of results you want returned from a query with
+xref:pagination.adoc[Pagination]
+
+¦
+image:TG_Icon_Library-218.png[alt=getstarted,width=74,height=74]
+*Mutation*
+
+Learn how GraphQL uses xref:mutation.adoc[Mutation] to insert and delete vertices and edges.
+¦
+|===
 
 
 

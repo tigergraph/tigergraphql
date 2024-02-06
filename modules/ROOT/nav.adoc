@@ -6,3 +6,4 @@
 * xref:sorting.adoc[]
 * xref:pagination.adoc[]
 * xref:mutation.adoc[]
+* xref:legacy-tg-versions.adoc[]
